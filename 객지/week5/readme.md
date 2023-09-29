@@ -120,3 +120,57 @@ println("str1: $str1, length: ${str1!!.length}") //null 검사 없이, str1.leng
 
 ### Java 클래스 구현
 [Java 클래스 구현](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section2_java/Dog.java)
+
+### 객체 생성(kotlin)
+
+객체 생성 절차
+* 객체 생성(생성자 호출 - **클래스 이름 뒤에 소괄호() 사용**)
+* 객체에 대한 레퍼런스 변수와 객체의 연결
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/f1e5e7db-ffde-46d0-9200-efb49ce6ae21)
+
+### 객체의 멤버 접근(kotlin)
+1. 객체의 프로퍼티(멤버변수)에 값 대입
+2. 객체의 프로퍼티(멤버변수)에서 값 읽기
+3. 객체의 메소드(멤버함수) 호출
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/8f605e21-b125-4e8e-ad07-5d18aed7cb2f)
+[구현 코드](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section2/dog.kt)
+
+## Section3
+
+### 생성자
+* 객체가 생성될 때, 생성된 **객체의 프로퍼티(멤버변수)를 유효한 값으로 초기화**하는 역할을 수행하는 메소드
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/a3d660e9-809b-4373-84d5-f5bc8ea9fb37)
+
+### 반드시 생성자가 필요한가요?
+* 생성된 객체의 프로퍼티가 의미론적으론 유효하지 않는 값으로 초기화되는 것을 막을 수 있다.
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/a45824c1-3ba3-4478-94f1-7d93aa0d6bee)
+
+### 생성자 문법(kotlin)
+* 클래스 이름과 블럭 시작 부분 사이에 _constructor_ 키워드와 함께 선언(_constructor_ 키워드 생략 가능)
+* 프로퍼티 초기화 방법
+  * **init** 블럭 사용(_constructor_ 키워드 생략 가능)
+```kotlin
+class Dog constructor(type: String, name: String?, age: Int){
+    var type: String
+    var name: String?
+    var age: Int
+
+    init{
+        this.type=type
+        this.name=name
+        this.age=age
+    }
+}
+```
+    * 생성자의 매개변수를 **프로퍼티 초기값**으로 할당 가능
+```kotlin
+class Dog(type: String, name: String?, age: int){
+    var type: String=type
+    var name: String?=name
+    var age: int=age        
+}
+```

@@ -106,14 +106,14 @@ var a=String?
 a=NULL //허용
 ```
 * 세이프 콜
- * NULL이 할당되어 있을 가능성이 있는 변수를 검사하여 안전하게 호출
+  * NULL이 할당되어 있을 가능성이 있는 변수를 검사하여 안전하게 호출
 ```kotlin
 println("str1: $str1, length: ${str1?.length}") //str1이 null이면 null 반환, null이 아니면, str1.length 접근
 ```
 
 * Non-NULL 단정 기호
- * 변수에 할당된 값이 NULL이 아님을 단정하므로, NULL 검사 없이 호출
- * 실행 시 변수에 NULL이 할당되어 있으면 NPE(NULL Pointer Exception) 발생
+  * 변수에 할당된 값이 NULL이 아님을 단정하므로, NULL 검사 없이 호출
+  * 실행 시 변수에 NULL이 할당되어 있으면 NPE(NULL Pointer Exception) 발생
 ```kotlin
 println("str1: $str1, length: ${str1!!.length}") //null 검사 없이, str1.length 접근근
 ```

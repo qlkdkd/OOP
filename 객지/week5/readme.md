@@ -1,6 +1,6 @@
 # week5. 클래스와 객체1
-
-## 절차지향적 소프트웨어 개발
+## Section1
+### 절차지향적 소프트웨어 개발
 * *하향식 설계*(Top Down Design) - 단계적 상세화(Stepwise Refinement)
 * *프러시저*(Procedure) 혹은 *함수*(Function)를 기반으로 프로그램을 구성
 * *데이터 공유*(전역변수)
@@ -79,3 +79,41 @@
 2. 새로운 기능을 추가하기 위해 이미 테스트까지 완료한 코드를 수정하지 않아도 된다.
 3. 데잍와 그 데이터로 작업을 처리하기 위한 메소드가 한 클래스에 들어갈 수 있다.
 4. 다른 애플리케이션의 코드를 재사용할 수 있다.
+
+
+## Section2
+
+### 객체란?
+* 상태 혹은 행동을 가지고 있는 _사물, 생물, 개념적 실체_
+![image](https://github.com/qlkdkd/OOP/assets/71871927/3688d319-3742-4c39-a6d0-4e52d15db537)
+
+### 클래스란?
+* 공통된 속성(상태 혹은 행동)을 가진 _객체들의 추상화 및 일반화된 개념_
+![image](https://github.com/qlkdkd/OOP/assets/71871927/30b9fec5-6a7f-437b-ad07-bf7fa096955d)
+
+### 클래스와 객체(소프트웨어 관점)
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/94d8a7a1-1c62-47e8-ac40-7726cf84a60f)
+
+### NULL을 허용한 변수(KOTLIN)
+* _코틀린의 변수 선언은_ 기본적으로 NULL을 허용하지 않고, **NULL을 허용하려면 자료형 뒤에 물음표(?) 기호를 명시해야 함.**
+```kotlin
+var a: String="Hello"
+a=NULL //오류!
+```
+```kotlin
+var a=String?
+a=NULL //허용
+```
+* 세이프 콜
+ * NULL이 할당되어 있을 가능성이 있는 변수를 검사하여 안전하게 호출
+```kotlin
+println("str1: $str1, length: ${str1?.length}") //str1이 null이면 null 반환, null이 아니면, str1.length 접근
+```
+
+* Non-NULL 단정 기호
+ * 변수에 할당된 값이 NULL이 아님을 단정하므로, NULL 검사 없이 호출
+ * 실행 시 변수에 NULL이 할당되어 있으면 NPE(NULL Pointer Exception) 발생
+```kotlin
+println("str1: $str1, length: ${str1!!.length}") //null 검사 없이, str1.length 접근근
+```

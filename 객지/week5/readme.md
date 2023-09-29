@@ -117,3 +117,6 @@ println("str1: $str1, length: ${str1?.length}") //str1이 null이면 null 반환
 ```kotlin
 println("str1: $str1, length: ${str1!!.length}") //null 검사 없이, str1.length 접근근
 ```
+
+### Java 클래스 구현
+[Java 클래스 구현](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section2_java/Dog.java)

@@ -45,3 +45,7 @@
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/98c1c8f7-8428-4cb9-83df-3c5c6ec4cc8b)
 
 [GUIFigureApp.kt](https://github.com/qlkdkd/OOP/tree/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init)
+[GUIFigureApp_Circle](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/Circle.kt)
+[GUIFigureApp_Rectangle](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/Rectangle.kt)
+[GUIFigureApp_Triangle](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/Triangle.kt)
+[GUIFigureApp_main](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/GuiFigureApp.kt)

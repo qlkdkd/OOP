@@ -166,11 +166,71 @@ class Dog constructor(type: String, name: String?, age: Int){
     }
 }
 ```
-    * 생성자의 매개변수를 **프로퍼티 초기값**으로 할당 가능
+
+   * 생성자의 매개변수를 **프로퍼티 초기값**으로 할당 가능
+     
 ```kotlin
 class Dog(type: String, name: String?, age: int){
     var type: String=type
     var name: String?=name
     var age: int=age        
+}
+```
+
+### 주 생성자 예제
+1. 주 생성자의 매개변수를 프로퍼티(클래스 멤버변수)의 초기값으로 할당하는 예제 코드
+[코드 보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section3/mainconstructor/initWIthParam/Dog.kt)
+2.  init 블럭에서 프로퍼티(클래스 멤버변수)를 초기화하는 예제코드
+[코드 보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section3/mainconstructor/initBlock/Dog.kt)
+3.  주 생성자의 매개변수를 프로퍼티로 표현하고, Init 블럭에서 프로퍼티를 초기화하는 예제 코드
+[코드 보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section3/mainconstructor/initBlock/propertyAsParam/Dog.kt)
+
+### 생성자 문법(kotlin)
+* 부 생성자
+    * 주 생성자가 없이 부 생성자만 정의될 수 있다.
+    * 부 생성자를 여러개 정의될 경우, 각 **부 생성자의 매개변수의 타입 및 개수는 달라야 한다.**
+```kotlin
+class Dog{
+    var type: String
+    var name: String?
+    var age: int
+
+    constructor(type: String, name: String?, age: Int){
+        this.type=type;
+        this.name=name;
+        this.age=age;
+    }
+    constructor(type: String, age: Int): this(type, "NoName", age)
+    constructor(type: String): this(type, "NoName", 0)
+}
+```
+
+  * (주 생성자가 있는 경우) 부 생성자는 **주 생성자를 반드시 상속**해야 한다.
+
+```kotlin
+class Dog(type: String, name: String?, age: Int){
+    var type: String=type
+    var name: String?=name
+    var age: Int=age
+
+    constructor(type: String, age: Int):
+        this(type, "NoName", age)
+    constructor(type: String):
+        this(type, "NoName", 0)
+}
+```
+
+```kotlin
+class Dog(type: String, name: String?, age: Int){
+    var type: String
+    var name: String
+    var age: Int
+
+    init{ ... }
+
+    constructor(type: String, age: Int):
+        this(type, "NoName", age)
+    constructor(type: String):
+        this(type, "NoName", 0)
 }
 ```

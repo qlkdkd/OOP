@@ -53,5 +53,24 @@ fun main(){
 private|동일한 파일 내의 클래스, 함수, 프로퍼티, 인터페이스에서 접근 가능|동일한 클래스 내에서 접근 가능
 packcage-private(Java 기본값)|지원 안함|동일 패키지 내에서 접근 가능
 internal|동일 모튤 내에서 접근 가능|지원 안함
----|---
 Public(Kotlin 기본값)|어디서든 접근 가능
+
+## 가시성 지시자(Kotlin)
+![image](https://github.com/qlkdkd/OOP/assets/71871927/7fab9cb8-7896-415a-a966-355d95be2056)
+
+## 가시성 지시자(Java)
+![image](https://github.com/qlkdkd/OOP/assets/71871927/fc9dde32-bd4d-44c5-9df2-888748d8b972)
+
+## 가시성 지시자(종합)
+![image](https://github.com/qlkdkd/OOP/assets/71871927/5bf3c5af-2a93-4c95-9fc2-5f344fc3bbd5)
+
+## 가시성 지시자: private(공통)-멤버 수준
+![image](https://github.com/qlkdkd/OOP/assets/71871927/911f52eb-e15d-40cb-b715-f1f6fe510732)
+
+## 가시성 지시자: private(Kotlin)-클래스 수준
+![image](https://github.com/qlkdkd/OOP/assets/71871927/b8341d4e-f2ac-46f9-9ec9-db8ff238a958)
+
+## 가시성 지시자: internal(Kotlin)
+![image](https://github.com/qlkdkd/OOP/assets/71871927/a7b37f47-baf2-4168-8177-8772905c14bd)
+![image](https://github.com/qlkdkd/OOP/assets/71871927/da6c11f9-14f9-401f-b3d8-772043ec1c4b)
+![image](https://github.com/qlkdkd/OOP/assets/71871927/9833ac7e-c999-4562-bec8-f2a9dbaae7ae)

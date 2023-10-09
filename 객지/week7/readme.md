@@ -148,4 +148,33 @@ val id: Int=_id
 * 세터(setter)
    * set이라는 이름의 파리미터 1개를 포함하는 메서드 형태로 구현한다. **파라미터의 데이터**타입은 프로퍼티와 동일하며 명시적으로 선언하지 않는다.
  
-## 기본 게터와 세터 지정 예제-NormalGetterSetter.kt
+## 기본 게터와 세터 지정 예제-[NormalGetterSetter.kt]()
+## 지원 필드(Backing field)를 반드시 사용해야 하는가?
+![image](https://github.com/qlkdkd/OOP/assets/71871927/64c58053-d757-4f3e-89dc-5c63c65a9108)
+
+## 커스텀 게터와 세터 사용하기-[CustomGetterSetter.kt]()
+
+## 지원 프로퍼티(Backing Property)
+### 지원 필드(Backing Field)만으로는 접근 메서드(게터/세터)의 구현의 한계를 느낄 때, 지원 프로퍼티(Backing Property)를 직접 사용하여 접근 메서드 구현
+
+* 사례 1. 프로퍼티 값을 외부에서 직접 조작하거나 접근하는 것을 제한
+```kotlin
+class Myclass{
+   private var )myProperty: Int=0
+
+   var myProperty: Int
+      get()=_myProperty//게터에서는 Backing property의 값을 반환
+      set(value){
+         _myProperty=value=value//세터에서는 Backing property에 값을 할당
+      }
+}
+```
+* 사례 2. 프로퍼티와 다른 타입을 반환하고 싶을 때
+```kotlin
+private var _results; MutableList<List<String>>=mutableListOf()
+
+val results: List<List<String>>
+   get()=_results//게터에서는 Backing Properlty의 타입 (MutableList)을 List 타입으로 변환하여 반환
+```
+
+지원 프로퍼티 사용 예제-[CustomSetterSetterBackingProperty.kt]()

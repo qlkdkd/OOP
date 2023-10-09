@@ -42,3 +42,15 @@ fun main(){
    val acc=Account()
    acc.balance=1000//접근 불가
 }
+```
+---
+
+# 가시성(접근제어) 지시자
+
+## 가시성 지시자
+가시성 지시자|Kotlin|Java
+---|---|---
+private|동일한 파일 내의 클래스, 함수, 프로퍼티, 인터페이스에서 접근 가능|동일한 클래스 내에서 접근 가능
+packcage-private(Java 기본값)|지원 안함|동일 패키지 내에서 접근 가능
+internal|동일 모튤 내에서 접근 가능|지원 안함
+Public(Kotlin 기본값)|어디서든 접근 가능

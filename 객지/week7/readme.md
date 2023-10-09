@@ -16,3 +16,8 @@
 ## 정보 은닉 사례
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/2bbd49ce-37b1-44e4-a1d4-cdcc1e297453)
 JVM은 하부 운영체제 및 하드웨어 플랫폼의 세부사항을 응용프로그램에 숨김
+
+## 캡슐화란?
+### *캡슐화*는 정보 은닉 원칙을 구현하는 객체지향 매커니즘
+* 관련된 데이터와 함수를 하나의 프로그래밍 단위(클래스)로 묶고, 가시성(혹은 접근 제어) 지시자 (public, private) 사용하여 외부에서 데이터와 함수의 접근을 제어한다.
+![image](https://github.com/qlkdkd/OOP/assets/71871927/fd4e1699-62ae-4449-b9c7-84394c1ae89b)

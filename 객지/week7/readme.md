@@ -57,6 +57,7 @@ Public(Kotlin 기본값)|어디서든 접근 가능
 
 ## 가시성 지시자(Kotlin)
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/7fab9cb8-7896-415a-a966-355d95be2056)
+[코틀린 코드](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week7/week7_Lecture/src/main/kotlin/section1/privateVisibility/commom/PrivateMemberTest.kt)
 
 ## 가시성 지시자(Java)
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/fc9dde32-bd4d-44c5-9df2-888748d8b972)
@@ -69,12 +70,15 @@ Public(Kotlin 기본값)|어디서든 접근 가능
 
 ## 가시성 지시자: private(Kotlin)-클래스 수준
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/b8341d4e-f2ac-46f9-9ec9-db8ff238a958)
-
+[코드](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week7/week7_Lecture/src/main/kotlin/section1/privateVisibility/kotlin/PriviteClassTest.kt)
 ## 가시성 지시자: internal(Kotlin)
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/a7b37f47-baf2-4168-8177-8772905c14bd)
+[코드보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week7/week7_Lecture/src/main/kotlin/section1/internalVisibility/InternalVisibility.kt)
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/da6c11f9-14f9-401f-b3d8-772043ec1c4b)
+[코드보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week7/week7_Lecture/src/main/kotlin/section1/internalVisibility/internalTestOtherFile.kt)
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/9833ac7e-c999-4562-bec8-f2a9dbaae7ae)
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/6f9eb657-8761-49df-92ed-30e6bae14398)
+[코드보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week7/week7_Lecture/src/main/kotlin/section1/internalVisibility/internalTestOtherModule.kt)
 
 # 프로퍼티의 접근
 ## Java에서 필드의 접근

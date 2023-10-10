@@ -12,3 +12,7 @@
 다음 시나리오 조건을 만족하는 테스트 프로그램을 작성하시오.
 1. Account 객체를 2개 이상 생성하여 돈을 입금하고 인출하는 시나리오를 구현합니다.
 2. 돈을 입금하거나 인출한 후에 계좌번호와 잔액을 출력하시오.
+
+## 코드 보기
+* [class](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week7/week7_practice/src/main/kotlin/Account.kt)
+* [main](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week7/week7_practice/src/main/kotlin/Main.kt)

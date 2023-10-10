@@ -1,3 +1,4 @@
+[실습](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week7/practice.md)
 # 정보 은닉과 캡슐
 
 ## 학습목표

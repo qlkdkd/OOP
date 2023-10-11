@@ -5,3 +5,7 @@
 * HelloKotlin프로젝트(HelloKotlin모듈, OtherModule모듈)
     * HelloKotlin모듈(defalut패키지, com.example.edu패키지)
          * com.example.edu패키지(Person.kt파일, Control파일)
+
+---
+
+## 프로젝트, 패키지,파일, 클래스의 관계: 코틀린 프로젝트 vs 자바 프로젝트

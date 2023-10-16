@@ -28,4 +28,12 @@ fun main() {
         else if (s is Circle)
             s.displayCircle()
     }
+    val s: Shape= Rectangle(1, 2, 3, 4)
+    if(s is Rectangle)s.displayRectangle()
+    
+    /*
+    자바버전
+    if (s instanceof Rectangle)
+    (Rectangle(s)).displayRectangele()
+    */
 }

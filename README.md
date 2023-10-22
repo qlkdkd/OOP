@@ -2,7 +2,7 @@
 
 [2주차](https://github.com/qlkdkd/OOP/tree/main/%EA%B0%9D%EC%A7%80/week2)
 
-[3주차]()
+[3주차](https://github.com/qlkdkd/OOP/tree/main/%EA%B0%9D%EC%A7%80/week3)
 
 [4주차]()
 

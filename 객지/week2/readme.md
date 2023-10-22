@@ -350,4 +350,179 @@ fun main(){
 * 이항 연산자: +, -, *, /, %
 * 정수끼리의 연산 결과는 정수
 * 실수끼리의 연산 결과는 실수
-* 정수와 실수의 연산 결과는 실
+* 정수와 실수의 연산 결과는 실수
+
+### 산술 연산자 예제
+* 자바
+```Java
+package week2.section4;
+
+/**
+ * 산술연산자의 예제 코드
+ */
+public class ArithmeticExpressionTest {
+    public static void main(String[] args) {
+        System.out.print("10+3=");
+        System.out.println(10 + 3);
+
+        System.out.print("5.21+3.1=");
+        System.out.println(5.21 + 3.1);
+
+        System.out.println("5+3.1=" + (5 + 3.1));
+
+        System.out.println("5/2=" + (5 / 2));
+        System.out.println("5/2.0=" + (5 / 2.0));
+
+        System.out.println("365의 100의 자리수=" + (365 / 100));
+        System.out.println("365의 10의 자리수=" + (365 % 100) / 10);
+        System.out.println("365의 1의 자리수=" + (365 % 10));
+
+        System.out.println("365 % 2 =" + 365 % 2);    //1이면 홀수, 0이면 짝수
+
+        System.out.println("366 % 3 =" + 366 % 3);     // 0이면 3의 배수,
+    }
+}
+```
+
+*코틀린
+```kotlin
+package week2.section4
+
+fun main() {
+    print("10+3=")
+    println(10 + 3)
+
+    print("5.21+3.1=")
+    println(5.21 + 3.1)
+
+    println("5+3.1=" + (5 + 3.1))
+
+    println("5/2=" + 5 / 2)
+    println("5/2.0=" + 5 / 2.0)
+
+    println("365의 100의 자리수=" + 365 / 100)
+    println("365의 10의 자리수=" + 365 % 100 / 10)
+    println("365의 1의 자리수=" + 365 % 10)
+
+    println("365 % 2 =" + 365 % 2) //1이면 홀수, 0이면 짝수
+
+    println("366 % 3 =" + 366 % 3) // 0이면 3의 배수,
+}
+```
+
+### /, %의 응용
+* 100의 자리, 10의 자리, 1의 자리 분리
+```kotlin
+println("365의 100의자리 수: ${365/100}")
+println("365의 10의자리 수: ${(365%100)/10}")
+println("365의 1의 자리수: ${(365%10)}")
+```
+
+* 홀수 여부 판단
+```kotlin
+println("365%2=${365%2})//1이면 홀수, 0이면 짝수
+```
+
+* 3의 배수 여부 판단
+```kotlin
+println("366%3=${366%3}")
+```
+
+## 산술 연산자 예제: 초 단위의 정수를 입력 받고, 몇 시간, 몇 분, 몇 초인지를 출력하시오
+```kotlin
+package week2.section4
+
+import java.util.*
+
+fun main() {
+    val scanner = Scanner(System.`in`)
+    print("초단위의 정수를 입력하시오> ")
+    val input = scanner.nextInt() // 정수입력
+
+    val hours = input / 60 / 60
+    val minutes = input / 60 % 60
+    val seconds = input % 60
+
+    print("${input}초는 ${hours}시간 ${minutes}분 ${seconds}초 입니다.")
+}
+```
+
+## 증감 연산자
+
+* 증감 연산자는 항이 1개인 단항 연산
+증감 연산자|내용
+---|---
+a++|a를 먼저 사용한 후에 1 추가
+a--|a를 먼저 사용한 후에 1 감소
+++a|a를 먼저 1 증가한 후에 사용
+--a|a를 먼저 1 감소한 후에 사용
+
+## 증감 연산자 예제1
+```kotlin
+package chap02.section4
+fun main() {
+    var num1 = 10
+    var num2 = 10
+    val result1 = ++num1 // num 값 증가 후 대입
+    val result2 = num2++ // 먼저 num 값 대입 후 증가
+
+    println("result1: $result1")
+    println("result2: $result2")
+    println("num1: $num1")
+    println("num2: $num2")
+}
+```
+
+## 증감 연산자 예제 2: 다음 코드의 실행 결과는?
+```kotlin
+fun main(){
+    var a=3
+    var d=3
+    a=d++
+    println("a=$a , d=$d")
+
+    a=++d
+    println("a=$a , d=$d")
+
+    a=d--
+    println("a=$a , d=$d")
+
+    a=--d
+    println("a=$a , d=$d")
+}
+```
+
+결과
+```
+a=3 , d=4
+a=5 , d=5
+a=5 , d=4
+a=3 , d=3
+
+```
+
+## 대입 연산자
+![image](https://github.com/qlkdkd/OOP/assets/71871927/c1eccc6c-6f60-41cb-ab11-dca099bfe23e)
+
+### 대입 연산자 예제: 다음 코드 실행 후, 변수 a, b, c의 값은?
+```kotlin
+fun main(){
+    var a=3
+    var b=3
+    var c=3
+
+    a+=3
+    b*=3
+    c%=3
+
+    println("$a , $b , $c")
+}
+```
+
+결과
+```
+6 , 9 , 0
+```
+
+## 비교 연산자, 논리 연산자
+![image](https://github.com/qlkdkd/OOP/assets/71871927/bcda4270-4d71-4799-a31f-6fb451023dec)

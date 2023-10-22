@@ -312,3 +312,42 @@ if(ob instanceof String){
    System.out.println("length of String"+str.length));/
 }
 ```
+
+## 묵시적 변환(kotlin)
+### Any
+* 자료형이 정해지지 않은 경우에 사용
+* 모든 클래스의 뿌리 - Int나 Stirng은 Any형의 자식 클래스이다.
+* Any는 언제든 필요한 자료형으로 자동 변환
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/d42478cc-6b0d-43cc-8f01-e99b94f089e8)
+
+```kotlin
+package week2.section3
+
+fun main(){
+   var a: Any=1//a는 1로 초기화될 때 Int형이 됨
+   a=20L//Int형이였던 a는 변경된 값 20L에 의해 Long이 됨
+
+   //a의 자바 기본형을 출력하면 long이 나옴
+   println("a: $a type: ${a.javaClass})
+}
+```
+
+---
+
+# 코틀린 연산자
+## 식과 연산
+* 코틀린의 기본 연산자는 산술, 대입, 증가, 감소, 비교, 논리 연산자 등이 있음
+* 식(expression)은 연산자(operator)과 피연산자(operand)의 조합으로 표현되며, 주어진 식을 계산하여 결과를 얻어 내는 과정을 연산(operation)이라고 한다.
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/a9d982a2-9929-4d79-a2e2-f32bfecc03e6)
+
+* 피연산자: 변수, 리터럴, 식
+* 연산자: 산술 연산자, 대입 연산자, 증감 연산자, 비교 연산자, 논리 연산자, 비트 연산자
+
+## 산술 연산자
+* 단항 연산자: +(양수), -(음수)
+* 이항 연산자: +, -, *, /, %
+* 정수끼리의 연산 결과는 정수
+* 실수끼리의 연산 결과는 실수
+* 정수와 실수의 연산 결과는 실

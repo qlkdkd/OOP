@@ -16,12 +16,87 @@
 
 [구현 코드_ 도형프로그램](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/procedural/init/GuiFigureApp.kt)
 
+```kotlin
+package week5.section1.procedural.init.section1.procedural.init
+
+import java.util.*
+
+var shapes = arrayOf("RECTANGLE", "CIRCLE", "TRIANGLE")
+var shapes_sound = arrayOf("rectangle.aif", "circle.aif", "triangle.aif")
+
+fun main() {
+    while (true) {
+        val select = getUserInput()
+        if (select == 4) break
+        rotate(select)
+        playSound(select)
+    }
+}
+
+fun getUserInput(): Int {
+    val scanner = Scanner(System.`in`)
+    println("다음 중 하나의 행동을 선택하세요 ")
+    println("1. 사각형클릭, 2.원클릭, 3.삼각형클릭, 4.종료")
+    print(">>")
+    return scanner.nextInt()
+}
+
+fun rotate(shapeNum: Int) {
+    println("도형 360도 회전:" + shapes[shapeNum - 1])
+}
+
+fun playSound(shapeNum: Int) {
+    println("AIF 사운드 재생:" + shapes_sound[shapeNum - 1])
+}
+```
+
+
 * 프로그램 변경 사항
   * 새로운 도형(아메바) 추가
     * 아메바 도형의 *회전 중심은 도형의 한쪽 끝*
     * 아메바 도형의 사운드는 *.hif형식*
    
 [구현 코드_아메바 추가](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/procedural/revision/GuiFigureApp_plusAmeba.kt)
+
+```kotlin
+package section1.procedural.revision
+
+import java.util.*
+
+var shapes = arrayOf("RECTANGLE", "CIRCLE", "TRIANGLE", "AMEBA") // 아메바 추가
+var shapes_sound = arrayOf("rectangle.aif", "circle.aif", "triangle.aif", "ameba.hif") // ameba.hif 추가
+
+
+fun main() {
+    while (true) {
+        val select = getUserInput()
+        if (select == 5) // 종료번호 변경
+            break
+        rotate(select)
+        playSound(select)
+    }
+}
+
+fun getUserInput(): Int {
+    val scanner = Scanner(System.`in`)
+    println("다음 중 하나의 행동을 선택하세요 ")
+    println("1. 사각형클릭, 2.원클릭, 3.삼각형클릭, 4.아메바, 5.종료") // 아메바 추가
+    print(">>")
+    return scanner.nextInt()
+}
+
+fun rotate(shapeNum: Int) {
+    if (shapes[shapeNum - 1] == "AMEBA") // 추가
+        println("도형의 한쪽 끝을 기준으로 360도 회전:" + shapes[shapeNum - 1]) // 추가
+    else println("도형의 중심을 기준으로 360도 회전:" + shapes[shapeNum - 1])
+}
+
+fun playSound(shapeNum: Int) {
+    if (shapes[shapeNum - 1] == "AMEBA") // 추가
+        println("HIF 사운드 재생:" + shapes_sound[shapeNum - 1]) // 추가
+    else println("AIF 사운드 재생:" + shapes_sound[shapeNum - 1])
+}
+```
 
 ### 절차지향 개발의 장단점
 
@@ -44,24 +119,180 @@
 ### GUIFigureApp 객체지향 설계(초기 설계)
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/98c1c8f7-8428-4cb9-83df-3c5c6ec4cc8b)
 
-[GUIFigureApp.kt]
-(https://github.com/qlkdkd/OOP/tree/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init)
+[GUIFigureApp.kt](https://github.com/qlkdkd/OOP/tree/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init)
 
 [GUIFigureApp_Circle](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/Circle.kt)
 
+
+```kotlin
+//circle
+package section1.objectoriented.init
+
+class Circle {
+    val shape = "CIRCLE"
+    val sound = "circle.aif"
+    fun rotate() {
+        println("도형의 중심을 기준으로 360도 회전:$shape")
+    }
+
+    fun playSound() {
+        println("AIF 사운드 재생:$sound")
+    }
+}
+```
+
 [GUIFigureApp_Rectangle](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/Rectangle.kt)
+
+
+```kotlin
+//rectangle
+package section1.objectoriented.init
+
+class Rectangle {
+    val shape = "RECTANGLE"
+    val sound = "rectangle.aif"
+    fun rotate() {
+        println("도형의 중심을 기준으로 360도 회전:$shape")
+    }
+
+    fun playSound() {
+        println("AIF 사운드 재생:$sound")
+    }
+}
+```
 
 [GUIFigureApp_Triangle](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/Triangle.kt)
 
+
+```kotlin
+//triangle
+package section1.objectoriented.init
+
+class Triangle {
+    val shape = "TRIANGLE"
+    val sound = "triangle.aif"
+    fun rotate() {
+        println("도형의 중심을 기준으로 360도 회전:$shape")
+    }
+
+    fun playSound() {
+        println("AIF 사운드 재생:$sound")
+    }
+}
+```
+
 [GUIFigureApp_main](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/GuiFigureApp.kt)
 
+```kotlin
+package section1.objectoriented.init
+
+import java.util.*
+
+fun main() {
+    val rectangle = Rectangle()
+    val circle = Circle()
+    val triangle = Triangle()
+    while (true) {
+        val select = getUserInput()
+        when (select) {
+            1 -> {
+                rectangle.rotate()
+                rectangle.playSound()
+            }
+
+            2 -> {
+                circle.rotate()
+                circle.playSound()
+            }
+
+            3 -> {
+                triangle.rotate()
+                triangle.playSound()
+            }
+
+            4 -> return
+        }
+    }
+}
+
+fun getUserInput(): Int {
+    val scanner = Scanner(System.`in`)
+    println("다음 중 하나의 행동을 선택하세요 ")
+    println("1. 사각형클릭, 2.원클릭, 3.삼각형클릭, 4.종료")
+    print(">>")
+    return scanner.nextInt()
+}
+```
 
 ### 변경 사항 추가(Ameba)반영 후...
 
 [GUIFigure_AddAmeba](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/Ameba.kt)
 
+```kotlin
+package section1.objectoriented.revision
+
+
+class Ameba {
+    val shape = "AMEBA"
+    val sound = "ameba.hif"
+    fun rotate() {
+        println("도형의 한쪽 끝을 기준으로 360도 회전:$shape")
+    }
+
+    fun playSound() {
+        println("HIF 사운드 재생:$sound")
+    }
+}
+```
+
 [GUIFigureApp_Revisioned](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section1/objectoriented/init/GuiFigureApp_revision.kt)
 
+```kotlin
+package week5.section1.objectoriented.revision
+
+import java.util.*
+
+fun main() {
+    val rectangle = Rectangle()
+    val circle = Circle()
+    val triangle = Triangle()
+    val ameba = Ameba()
+
+    while (true) {
+        val select = getUserInput()
+        when (select) {
+            1 -> {
+                rectangle.rotate()
+                rectangle.playSound()
+            }
+
+            2 -> {
+                circle.rotate()
+                circle.playSound()
+            }
+
+            3 -> {
+                triangle.rotate()
+                triangle.playSound()
+            }
+
+            4 -> {
+                ameba.rotate()
+                ameba.playSound()
+            }
+            5 -> return
+        }
+    }
+}
+
+fun getUserInput(): Int {
+    val scanner = Scanner(System.`in`)
+    println("다음 중 하나의 행동을 선택하세요 ")
+    println("1. 사각형클릭, 2.원클릭, 3.삼각형클릭, 4.아메바클릭, 5.종료")
+    print(">>")
+    return scanner.nextInt()
+}
+```
 
 ### 현재 객체지향 설계의 문제점
 
@@ -121,6 +352,39 @@ println("str1: $str1, length: ${str1!!.length}") //null 검사 없이, str1.leng
 ### Java 클래스 구현
 [Java 클래스 구현](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section2_java/Dog.java)
 
+```java
+package section2_java;
+
+public class Dog { // ① 클래스의 정의
+    // ② 프로퍼티들(속성)
+    String type;
+    String name;
+    int age;
+
+    // ③ 메서드들(함수)
+    void bark() {
+        System.out.println(name+"(이/가)  짖고 있습니다.");
+    }
+    void eat() {
+        System.out.println(name+"(이/가) 식사 중입니다.");
+    }
+
+    public static void main(String[] args) {
+        Dog aDog = new Dog();  // ④ 클래스의 생성자를 통한 객체의 생성
+        aDog.type = "진도개";  // ⑤ 객체의 프로퍼티에 값 할당
+        aDog.name = "화랑";
+        aDog.age = 3;
+
+        // ⑥ 객체의 멤버 프로퍼티 읽기
+        System.out.println("aDog.type: "+aDog.type +
+                ", aDog.name: "+ aDog.name +
+                ", aDog.age: " + aDog.age);
+        aDog.bark(); // ⑦ 객체의 멤버 메서드의 사용
+        aDog.eat();
+    }
+}
+```
+
 ### 객체 생성(kotlin)
 
 객체 생성 절차
@@ -136,6 +400,41 @@ println("str1: $str1, length: ${str1!!.length}") //null 검사 없이, str1.leng
 
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/8f605e21-b125-4e8e-ad07-5d18aed7cb2f)
 [구현 코드](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section2/dog.kt)
+
+```kotlin
+package section2
+
+class Dog { // ① 클래스의 정의
+    // ② 프로퍼티들(속성)
+    var type: String = "Unknown"
+    var name: String? = null
+    var age: Int = 0
+
+    // ③ 메서드들(함수)
+    fun bark() {
+        println("$name(이/가)  짖고 있습니다.")
+    }
+
+    fun eat() {
+        println("$name(이/가) 식사 중입니다.")
+    }
+}
+
+fun main() {
+    val aDog = Dog()  // ④ 클래스의 생성자를 통한 객체의 생성
+
+    aDog.type = "진도개"  // ⑤ 객체의 프로퍼티에 값 할당
+    aDog.name = "화랑"
+    aDog.age = 3
+
+    // ⑥ 객체의 멤버 프로퍼티 읽기
+    println("종류= ${aDog.type}")
+    println("이름= ${aDog.name}")
+    println("나이= ${aDog.age}")
+    aDog.bark() // ⑦ 객체의 멤버 메서드의 사용
+    aDog.eat()
+}
+```
 
 ## Section3
 
@@ -180,10 +479,135 @@ class Dog(type: String, name: String?, age: int){
 ### 주 생성자 예제
 1. 주 생성자의 매개변수를 프로퍼티(클래스 멤버변수)의 초기값으로 할당하는 예제 코드
 [코드 보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section3/mainconstructor/initWIthParam/Dog.kt)
+
+```kotlin
+package section3.mainconstructor.initWIthParam
+
+class Dog (type:String, name:String?, age:Int){
+    var type: String = type
+    var name: String? = name
+    var age: Int = age
+    fun bark() {
+        println("$name(이/가)  짖고 있습니다.")
+    }
+
+    fun eat() {
+        println("$name(이/가) 식사 중입니다.")
+    }
+}
+
+fun main() {
+    println("객체생성 요청: Dog(\"진도개\",\"화랑\",3)")
+    val aDog = Dog("진도개","화랑",3)
+    println("종류= ${aDog.type}")
+    println("이름= ${aDog.name}")
+    println("나이= ${aDog.age}")
+
+    println("\n객체생성 요청: Dog(\"진도개2\",null,100)")
+    val bDog = Dog("진도개2",null,100)
+    println("종류= ${bDog.type}")
+    println("이름= ${bDog.name}")
+    println("나이= ${bDog.age}")
+}
+```
+
 2.  init 블럭에서 프로퍼티(클래스 멤버변수)를 초기화하는 예제코드
 [코드 보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section3/mainconstructor/initBlock/Dog.kt)
+
+```
+package section3.mainconstructor.initBlock
+
+class Dog constructor (type:String, name:String?, age:Int){
+
+    var type: String
+    var name: String?
+    var age: Int = 0
+
+    init{
+        this.type = if (type!="삽살개" && type!="진도개" && type!="Dog") {
+            println("${type} is an invalid type!!: Dog 로 초기화")
+            "Dog"
+        } else type
+        this.name = name ?: "noName"
+        this.age = if (age !in 0..30) {
+            println("${age} is an invalid age!!: 0으로 초기화")
+            0
+        } else age
+    }
+
+    fun bark() {
+        println("$name(이/가)  짖고 있습니다.")
+    }
+
+    fun eat() {
+        println("$name(이/가) 식사 중입니다.")
+    }
+}
+
+fun main() {
+    println("객체생성 요청: Dog(\"진도개\",\"화랑\",3)")
+    val aDog = Dog("진도개","화랑",3)
+    println("종류= ${aDog.type}")
+    println("이름= ${aDog.name}")
+    println("나이= ${aDog.age}")
+
+    println("\n객체생성 요청: Dog(\"진도개2\",null,100)")
+    val bDog = Dog("진도개2",null,100)
+    println("종류= ${bDog.type}")
+    println("이름= ${bDog.name}")
+    println("나이= ${bDog.age}")
+
+}
+```
+
 3.  주 생성자의 매개변수를 프로퍼티로 표현하고, Init 블럭에서 프로퍼티를 초기화하는 예제 코드
 [코드 보기](https://github.com/qlkdkd/OOP/blob/main/%EA%B0%9D%EC%A7%80/week5/week5_Lecture/src/main/kotlin/section3/mainconstructor/initBlock/propertyAsParam/Dog.kt)
+
+```kotlin
+package section3.mainconstructor.initBlock.propertyAsParam
+
+class Dog(var type: String = "Dog", var name: String?, var age: Int = 0) {
+    init {
+        if (type!="삽살개" && type!="진도개" && type!="Dog") {
+            println("${type} is an invalid type!!: Dog 로 초기화")
+            type = "Dog"
+        }
+        this.name = name ?: "noName"
+        if (age !in 0..30) {
+            println("${age} is an invalid age!!: 0으로 초기화")
+            age = 0
+        }
+    }
+
+    fun bark() {
+        println("$name(이/가)  짖고 있습니다.")
+    }
+
+    fun eat() {
+        println("$name(이/가) 식사 중입니다.")
+    }
+}
+
+fun main() {
+    println("객체생성 요청: Dog(\"진도개\",\"화랑\",3)")
+    val aDog = Dog("진도개", "화랑", 3)
+    println("종류= ${aDog.type}")
+    println("이름= ${aDog.name}")
+    println("나이= ${aDog.age}")
+
+    println("\n객체생성 요청: Dog(\"진도개2\",null,100)")
+    val bDog = Dog("진도개2", null, 100)
+    println("종류= ${bDog.type}")
+    println("이름= ${bDog.name}")
+    println("나이= ${bDog.age}")
+
+    println("\n객체생성: Dog(name=\"해피\")")
+    val cDog = Dog(name = "해피")
+    println("종류= ${cDog.type}")
+    println("이름= ${cDog.name}")
+    println("나이= ${cDog.age}")
+}
+```
 
 ### 생성자 문법(kotlin)
 * 부 생성자

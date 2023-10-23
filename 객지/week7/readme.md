@@ -154,10 +154,67 @@ val id: Int=_id
    * set이라는 이름의 파리미터 1개를 포함하는 메서드 형태로 구현한다. **파라미터의 데이터**타입은 프로퍼티와 동일하며 명시적으로 선언하지 않는다.
  
 ## 기본 게터와 세터 지정 예제-[NormalGetterSetter.kt]()
+```kotlin
+package week6.section2
+
+// 직접 구성한 기본 게터/세터
+
+class User(_id: Int, _name: String, _age: Int) {
+    // 프로퍼티들
+    val id: Int = _id
+        get() = field
+
+    var name: String = _name
+        get() = field
+        set(value) {
+            field = value
+        }
+
+    var age: Int = _age
+//        get() = field
+//        set(value) {
+//            field = value
+//        }
+}
+
+fun main() {
+    val user1 = User(1, "Kildong", 30)
+    // user1.id = 2  // val 프로퍼티는 값 변경 불가
+    user1.age = 35 // 세터
+    println("user1.age = ${user1.age}") // 게터
+}
+```
+
 ## 지원 필드(Backing field)를 반드시 사용해야 하는가?
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/64c58053-d757-4f3e-89dc-5c63c65a9108)
 
 ## 커스텀 게터와 세터 사용하기-[CustomGetterSetter.kt]()
+```kotlin
+package week6.sections.customgetset
+
+import java.util.*
+
+// 커스텀 게터/세터의 사용
+class User(_id: Int, _name: String, _age: Int) {
+    val id: Int = _id
+    var name: String = _name
+        set(value) {
+            println("The name was changed")
+            field = value.uppercase(Locale.getDefault()) // 받은 인자를 대문자로 변경해 프로퍼티에 할당
+        }
+
+    var age: Int = _age
+        private set
+}
+
+fun main() {
+    val user1 = User(1, "kildong", 35)
+
+    user1.name = "coco"
+    println("user3.name = ${user1.name}")
+    //user1.age = 36    // 외부에서 변경할 수 없음
+}
+```
 
 ## 지원 프로퍼티(Backing Property)
 ### 지원 필드(Backing Field)만으로는 접근 메서드(게터/세터)의 구현의 한계를 느낄 때, 지원 프로퍼티(Backing Property)를 직접 사용하여 접근 메서드 구현

@@ -170,4 +170,160 @@ fun main(){
 ---
 
 # 2. 배열 다루기
-## 베열이란?
+## 배열이란?
+* 데이터를 연속적으로 나열한 형태
+![image](https://github.com/qlkdkd/OOP/assets/71871927/00b99a8a-fd77-4114-bdb8-8fc84e881131)
+* 배열 생성 방법
+    * arrayOf() 혹은 arrayOfNulls()(빈 배열) 함수 활용: 특정 값을 넣어서 배열을 생성
+    * Array() 생성자 활용
+
+## 배열 생성: arrayOf()
+* Array 타입의 배열 객체를 반환하는 함수
+```kotlin
+public inline fun <reified @PurePeifiable T> arrayOf(varang elements: T): Array<T>
+```
+
+* 기본 및 다차원 배열
+```kotlin
+package section2
+
+//기본 배열
+fun main() {
+
+    val array1 = arrayOf(1, 2, 3)
+    val array2 = arrayOf(4, 5, 6)
+    val array3 = arrayOf(7, 8, 9)
+
+    val arr2d = arrayOf(array1, array2, array3)
+
+    // 또는 다음과 같이 초기화 할 수 있음
+    //val arr2d_v2 = arrayOf(arrayOf(1, 2, 3), arrayOf(4, 5, 6), arrayOf(7, 8, 9))
+
+    for (e1 in arr2d) {
+        for (e2 in e1) {
+            print(e2)
+        }
+        println()
+    }
+
+    println(arr2d[2][1])
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/40238804-c1cf-40e6-82ba-ab95401adf45)
+
+## 배열 생성: 다양한 자료형
+* 다양한 자료형의 혼합 가능
+```kotlin
+val mixArr=arrayOf(4, 5, 7, 3, "Chike", false)//정수, 문자열, 논리형 혼합
+```
+
+* 특정 자료형을 제한할 경우
+    * arrayOf<자료형>()
+    * 자료형 이름+ArrayOf()
+          * charArrayOf(), booleanArrayOf(), longArrayOf(), shortArrayOf(), byteArrayOf(), intArrayOf()...
+          * 부호 없는 자료형: ubyteArrayOf(), ushortArrayOf(), uintArrayOf(), ulongArrayOf()
+```kotlin
+val intOnlyArr1=arrayOf<Int>(4, 5, 7, 3)
+val intOnlyArr2=intArrayOf(4, 5, 7, 3)
+```
+
+## 배열 생성: Array()
+* 코틀린 표준 라이브러리의 Array.kt
+```kotlin
+public class Array<T>{
+    public inline constructor(size: Int, init: (Int)->T)
+    public operator fun get(index: Int, value: T)
+    public operator fun set(index: Int, vlaue: T):Unit
+    public val size: Int
+    public operator fun iterator(): Iterator<T>
+}
+```
+
+* Array 생성자를 통한 배열 생성
+    * size: 배열의 크기
+    * init: 초기값을 위한 람다식(Int)->T
+```kotlin
+val numArray=Array(5, {i->i*2})//[0, 2, 4, 6, 8]
+for (element in numArray)
+    println(element)
+
+val a=Array(1000, {i->myClass(i)
+```
+
+## 다양한 자료형을 위한 Any로 선언된 배열
+```kotlin
+fun main(){
+    val b=Array<Any>(10, {0})
+    b[0]="Hello World"
+    b[1]=1.1
+    println(b[0])
+    println(b[1])
+    println(b[2])
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/3b0c6cd3-6a4d-44ef-96a9-aff2e633f9f7)
+
+## [배열 요소에 접근하기]()
+* 배열에 사용하는 Array 클래스는 get()와 set() 메서드를 가지고 있는데 이것은 요소에 접근하기 위한 게터/세터임
+* 코틀린에서 배열은 대괄호를 사용해도 접근할 수 있는데 이건은 연산자 오버로딩으로 정의되어 있기 때문
+```kotlin
+arr.get(index)->value=arr[index]
+arr.set(index)->arr[index]=value
+```
+* 인덱스 번호 2번인 세 번째 요소가 출력 되어 두 출력문 모두 3을 나타냄. 따라서 arr.get()과 arr[]은 동일한 표현
+```kotlin
+val arr=intArrayOf(1, 2, 3, 4, 5)
+println(arr.get(2))
+println(arr[2])
+```
+* 다차원 배열일 경우 대괄호를 하나 더 사용
+```kotlin
+val arr2d=arrayOf(arrayOf(1, 2, 3), arrayOf(4, 5, 6), arrayOf(7,8,9))
+pritnln(arr2d[2][1])
+```
+
+* 배열 안에 값을 설정할 경우: set()에 의해 처리됨
+```kotlin
+arr.set(2, 7)//인덱스 2번 요소를 7로 교체
+arr[0]=8//인덱스 0번 요소를 8로 교체
+arr2d[2][1]=2//다차원 배열의 요소를 교체
+println("size: ${arr.size}, arr[0]: ${arr[0]}, arr[2]: ${arr[2]}")
+```
+
+* 배열 내 요소 순환
+```kotlin
+for (i in 0..arr.size-1){
+    println("arr[$i]=${arr[i]}")
+}
+```
+
+* 배열 선언 및 접근 연습하기
+```kotlin
+package section2
+
+import java.util.Arrays//Arrays를 사용하기 위해 자바 표준 라이브러리 임포트
+
+fun main(){
+    val arr=intArrayOf(1, 2, 3, 4, 5)
+    println("arr: ${Arrays.toString(arr)}")
+    println("power: ${arr.size}")
+    println("sum(): ${arr.sum()}")
+
+    //게터/세터에 의한 접근과 index 연산자 표기법
+    println(arr.get(2))
+    println(arr[2])
+
+    arr.set(2, 7)
+    arr[0]=8
+    println("power: ${arr.size}, arr[0]: ${arr[0]}, arr[2]: ${arr[2]}")
+
+    //루프를 통한 배열 요소의 접근
+    for (i in 0..arr.size-1){
+        println("arr[$i]=${arr[i]}")
+    }
+
+    println(arr.contains(4))
+    println(4 in arr)
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/b8ae67c4-3069-4184-b31b-8073a0996ecf)

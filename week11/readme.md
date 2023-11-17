@@ -327,3 +327,155 @@ fun main(){
 }
 ```
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/b8ae67c4-3069-4184-b31b-8073a0996ecf)
+
+## [배열 관리 API]()
+```kotlin
+package section2
+
+import java.util.Arrays
+
+fun main(){
+    val arr=intArrayOf(1, 2,3,4,5)
+
+    //하나의 요소를 추가한 새 배열 생성
+    val arr2=arr.plus(6)
+    println("arr2: ${Arrays.toString(arr2)}")
+
+    //필요한 범위를 잘라내 새 배열 생성
+    val arr3=arr.sliceArray(0..2)//인자에 잘라낼 인덱스 범위를 지정
+    println("arr3: ${Arrays.toString(arr3)}")
+
+    //첫 번째와 마지막 요소 확인
+    println(arr.first())
+    println(arr.last())
+
+    //요소 3의 인덱스 출력
+    println("indexOf(3): ${arr.indexOf(3)}")
+
+    //배열의 평균값 출력
+    println("average: ${arr.average()}")
+
+    //count에 의한 요소 개수
+    println("count: ${arr.count()}")
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/e646b004-7c78-4283-8f46-e4368d7e1f8e)
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/b73923f6-6062-40ae-a27b-ac89ce3d6248)
+
+* 배열 요소 확인 메서드
+```kotlin
+println(arr.contains(4))
+println(4 in arr)
+```
+
+## 배열의 순환
+* 순환 메서드 사용
+```kotlin
+package section2
+
+fun main(){
+    var arr=intArrayOf(1, 2, 3, 4, 5)
+
+    //forEach에 의한 요소 순환
+    arr.forEach{element->print("$element")}
+    println("\n")
+
+    //forEachIndexed에 의한 요소 순환
+    arr.forEachIndexed{i,e -> println("arr[$i]= $e")}
+    println("\n")
+    
+    //Iterator 이용
+    val iter: Iterator<Int> =arr.iterator()
+    while(iter.hasNext()){
+        val e=iter.next()
+        print("$e")
+    }
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/cfa178bc-29d1-4670-8145-5f668f36cb61)
+
+* forEach: 요소 개수만큼 지정한 구문을 반복 실행
+* forEachIndexed: 인덱스는 i로 요소는 e로 받아 화살표 표현식 오른쪽의 구문처리
+* iterator(): forEach와 유사
+    * hasNext(): 배열에서 참조할 다음 요소가 있는지 확인
+    * next(): 다음 요소를 반환하는 메서드
+ 
+## 배열의 정렬
+* 정렬(sort)
+    * 오름차순(ascending)으로 정렬하거나 내림차순(descending) 정렬
+    * Array는 기본적인 정렬 알고리즘을 제공
+* 정렬된 배열 반환
+    * sortedArray(): 오름차순으로 정렬된 배열을 반환
+    * sortedArrayDescending(): 내림차순으로 정렬된 배열을 반환
+* 원본 배열에 대한 정렬 진행
+    * sort(): 원본 그대로
+    * sortDescending(): 원본 거꾸로
+ 
+## [배열의 정렬 예제]()
+```kotlin
+package section2
+
+import java.util.Arrays
+
+fun main(){
+    val arr=arrayOf(8, 4, 3, 2, 5, 9, 1)
+
+    //오름차순, 내림차순으로 정렬된 일반 배열로 반환
+    val sortedNums=arr.sortedArray()
+    println("ACS: "+ Arrays.toString(sortedNums))
+
+    val sortedNumsDesc=arr.sortedArrayDescending()
+    println("DES: "+Arrays.toString(sortedNumsDesc))
+
+    //원본 배열에 대한 정렬
+    arr.sort(1, 3)//sort(fromIndex, toIndex)
+    println("ORI: "+ Arrays.toString(arr))
+    arr.sortDescending()
+    println("ORIDEC: "+ Arrays.toString(arr))
+
+    //List로 반환
+    val listSorted: List<Int> =arr.sorted()
+    val listDecs: List<Int> =arr.sortedDescending()
+
+    println("LST: "+listSorted)
+    println("LSTDEC: "+listDecs)
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/a55b8322-ff0e-4d20-a8fa-4c27be0ad041)
+
+## [배열의 정렬: sortBy]()
+* sortBy
+```kotlin
+inline fun <T, R: Comparable<R>> Array<out T>.sortBy(
+    crossline selector:(T)->R?:Unit
+)
+```
+    * selector 함수의 반환값의 정렬딘 순서로 배열 내 원소를 정렬
+    
+```kotlin
+package section2
+
+data class Product(val name: String, val price: Double)
+
+fun main(){
+    val products=arrayOf(
+        Product("SnowBall", 870.0),
+        Product("Smart Phone", 999.0),
+        Product("Drone", 240.0),
+        Product("Mouse", 333.55),
+        Product("Keyboard", 125.99),
+        Product("Monitor",1500.99),
+        Product("Tablet", 512.99)
+    )
+
+    products.sortBy{it.price}
+    products.forEach{println(it)}
+    println()
+
+    products.sortBy{it.name}
+    products.forEach{println(it)}
+    println()
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/6a571d68-f2e9-4d57-ae57-915b496d8594)

@@ -479,3 +479,34 @@ fun main(){
 }
 ```
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/6a571d68-f2e9-4d57-ae57-915b496d8594)
+
+## [배열의 정렬: sortWith]()
+* sortWith
+```kotlin
+fun <T> Array<out T>.sortWith(comparator: Comparator<in T>)
+```
+
+* Comparator 객체 생성 방법
+    * Comparator 인터페이스 구현 후, 객체 생성
+```kotlin
+fun interface Comparator<T>{
+    abstract fun compare(a: T, b: T): Int
+}
+    * compareBy 함수 이용
+```fun <T> compareBy(
+    varang selectors: (T) -> Comparable<*>?
+): Comparator<T>
+```
+
+## sortWith: Comparator 인터페이스 구현 후 객체 생성
+* Comparator 인터페이스
+```kotlin
+fun interface Comparator<T>{
+    abstract fun compare(a: T, b: T): Int
+}
+```
+
+* 예제
+```kotlin
+data calss Pra
+```

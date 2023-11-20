@@ -74,3 +74,8 @@ fun main(){
 문자 기반 쓰기 처리|java.io.Writer
 버퍼를 가지 문자 기반 읽기 처리|java.io.BufferedReader
 버퍼를 가진 바이트 기반 읽기 처리|java.io.BufferedInputSteram
+
+## Kotlin 입출력 API: java.io.Flie의 확장
+* [API 문서 URL}(https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/java.io.-file/)
+
+![image](https://github.com/qlkdkd/OOP/assets/71871927/bb4e4907-5234-42fa-9d94-bea337a82578)

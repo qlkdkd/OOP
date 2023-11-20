@@ -75,7 +75,193 @@ fun main(){
 버퍼를 가지 문자 기반 읽기 처리|java.io.BufferedReader
 버퍼를 가진 바이트 기반 읽기 처리|java.io.BufferedInputSteram
 
+* 이러한 라이브러리는 파일이나 콘솔과 같은 스트림(Stream)에서 읽거나 쓸 수 있는 API 제공
+   * Stream: 데이터가 강물에 띄운 것처럼 흘러간다는 의미로 데이터가 머물러있지 않고 전달되는 개념
+
 ## Kotlin 입출력 API: java.io.Flie의 확장
 * [API 문서 URL](https://kotlinlang.org/api/latest/jvm/stdlib/kotlin.io/java.io.-file/)
 
 ![image](https://github.com/qlkdkd/OOP/assets/71871927/bb4e4907-5234-42fa-9d94-bea337a82578)
+
+---
+
+# 파일에 쓰기
+
+## 파일에 쓰기: FileWriter 사용하기
+* Files클래스는 java.nio.file에 속해있으며 파일 조작을 위한 각종 static 메서드로 구성됨
+
+```kotlin
+package section2
+
+import java.io.FileWriter
+import java.io.IOException
+
+fun main(){
+    val path="textfile.txt"
+    val outString="안녕하세요!\r\n FileWriter\t테스트입니다!\n"
+
+    try{
+        val writer=FileWriter(path,true)//파일을 생성하는 함수 FileWriter를 사용하여 path에 저장된 파일명대로 txt파일 생성
+        writer.write(outString)//writer.write를 사용하여 textfile.txt에 outString에 저장된 내용 쓰기
+        writer.close()
+    }catch(e:IOException){}
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/859f215a-f368-4a0f-90a2-8533f070c309)
+
+## 파일에 쓰기(코드 간략화)
+* 예외처리 생략 가능: kotlin에서는 java와는 달리 예외가 모두 비검사 예외로 취급되기 떄문에, 명시적 예외 선언 불필요
+```kotlin
+try{
+        val writer=FileWriter(path,true)
+        writer.write(outString)
+        writer.close()
+    }catch(e:IOException){}
+```
+->
+```kotlin
+val writer=FileWriter(path,true)
+writer.write(outString)
+writer.close()
+```
+
+* use 확장함수 사용: T리소스에 대해서 block 함수를 수행하고, 예외가 발생 여부와 상관없이 T 리소스를 닫는다.(단, T리소스는 닫을 수 있는 스트림이나 채널이어야 함.
+
+```kotlin
+fun <T: CLoseable?, R>T.use(block: (T)->R)
+```
+
+```kotlin
+val writer=FileWriter(path, true)
+writer.write(outString)
+writer.close
+```
+->
+```kotlin
+FileWriter(path, true).use{
+   writer -> writer.write(outString)}
+```
+->
+```kotlin
+FileWriter(path, true).use{it.write(outString)}
+```
+
+## 파일에 쓰기: BufferedWriter 사용하기
+![image](https://github.com/qlkdkd/OOP/assets/71871927/637c7930-9af2-415d-9cf6-72086d4d5de4)
+* 버퍼를 사용하여 쓸 내용을 미리 저장한 뒤에 한꺼번에 파일에 쓰기 때문에 잦은 입출력 오버헤드를 줄일 수 있음
+
+```kotlin
+fun main(){
+   val path="textfile.txt"
+   val outString="안녕하세요!\r\n FileWriter\t테스트입니다!\n"
+
+   val file=File(path)
+   val bw=BufferedWriter(
+      OutputStreamWriter(FileOutputStream(file)))
+   bw.writer(outString)
+   bw.close()
+}
+```
+
+## 파일에 쓰기: PrintWriter 사용하기
+![image](https://github.com/qlkdkd/OOP/assets/71871927/f584f804-7e6f-48a7-ae80-f5b034c132a3)
+* print(), println(), printf()등 콘솔에서 출력하듯이 바이트 단위로 파일에 쓸 수 있음
+
+```kotlin
+fun main(){
+   val path="textfile.txt"
+   val outString="안녕하세요!\r\n FileWriter\t테스트입니다!\n"
+
+   val file=File(path)
+
+   val pw=PrintWriter(BufferedWriter(
+      OutputStreamWriter(FileOUtputStream(file)))
+   pw.println(outString)
+   pw.close()
+}
+```
+
+## 파일에 쓰기: File의 writeText() 사용하기
+![image](https://github.com/qlkdkd/OOP/assets/71871927/b23121f7-a5bc-4ab6-a0f3-3761212b0b67)
+```kotlin
+public fun File.writeText(text: String, charset:Charset=Charset.UTF_8):Unit
+   =writeBytes(text.toByteArray(charset))
+```
+
+```kotlin
+punlic fun FIle.writeBytes(array:ByteArray):Unit=FileOutputStream(this).use{it.write(array)}
+```
+
+---
+
+# 파일에서 읽기
+## 파일에서 읽기: Java Style
+![image](https://github.com/qlkdkd/OOP/assets/71871927/b91b6871-61bd-4f8e-8e7f-000faf8799c8)
+```kotlin
+fun readJavaStyle(path: String){
+    val inputString=StringBuilder()
+
+    try{
+        val file=File(path)
+        val inStream:InputStream=file.inputStream()
+        val isr=InputStreamReader(inStream)
+        val br=BufferedReader(isr)
+
+        val line=br.readLine()
+        while(line!=null){
+            inputString.append(line, '\n')
+            line=br.readLine()
+        }
+        br.close()
+    }catch(e: Exception){}
+    println(inputString)
+}
+```
+
+## 파일에서 읽기: File.bufferedReader(),Reader.readText() 확장함수 사용하기
+![image](https://github.com/qlkdkd/OOP/assets/71871927/d2d05f48-eaf0-4d93-903d-7d45633cf85e)
+
+## 파일에서 읽기: 축약된 버전(use함수 추가 적용)
+![image](https://github.com/qlkdkd/OOP/assets/71871927/41f60b66-7300-4249-ae09-42c990ff2689)
+```kotlin
+fun useReadTextBufferedReader(path:String) {
+    val br:BufferedReader
+    try {
+        br = File(path).bufferedReader()
+    }catch (e:Exception){ return }
+
+    val inputString = br.use { it.readText() }
+    println(inputString)
+}
+
+```
+
+## 파일에서 읽기: Reader.useLines 사용
+![image](https://github.com/qlkdkd/OOP/assets/71871927/3e3c314f-533f-4e84-8ed4-6c5b88e371de)
+
+```kotlin
+fun BRuseLines(path:String) {
+    val br:BufferedReader
+    try {
+        br = File(path).bufferedReader()
+    } catch (e:Exception) { return }
+
+    val lineList = mutableListOf<String>()
+    br.useLines { lines -> lines.forEach { lineList.add(it) } }
+    lineList.forEach { println(">  " + it) }
+}
+
+fun fileUseLines(path:String) {
+    val lineList = mutableListOf<String>()
+    try {
+        File(path).useLines { lines -> lines.forEach { lineList.add(it) } }
+    } catch (e:Exception) {}
+    lineList.forEach { println(">  " + it) }
+}
+```
+
+## 그 밖에 유용한 확장 함수
+* 파일의 내용 출력하기: `File(path)`, `forEachLine{println(it)}`
+* 바이트 단위로 읽기: `val bytes=File(path).readBytes()`, `println(Arrays.toString(bytes))`
+* 줄 단위로 읽기: `val lines=File(path).readLines()`, `lines.forEach{println(it)}`
+* 텍스트 단위로 읽기: `val text=File(path).readText()`, `println(text)`

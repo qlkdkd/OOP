@@ -285,5 +285,24 @@ fun main(){
 
 ## 세트의 여러가지 자료구조
 * hashSetOf() 함수
-    * 해시 테이블에 요소를 저장할 수 있는 자바의 해시세트 컬렉션을 만든다.
-    * 
+    * 해시 테이블에 요소를 저장할 수 있는 자바의 해시세트 컬렉션을 만든다
+         * 테이블: 내부적으로 키와 인덱스를 이용해 검색과 변경 등을 매우 빠륵 처리할 수 있는 자료구조
+   * hashSetOf(): HashSet반환
+         * 해시세트는 불변성 선언이 없기 때문에 추가 및 삭제 등의 기능 수행 가능
+![image](https://github.com/qlkdkd/OOP/assets/71871927/56eb6b92-7cc4-4445-8076-25bef8e7a9de)
+
+## 해시세트의 초기화
+```kotlin
+fun main(){
+    val intsHashSet: HashSet<Int> =hashSetOf(6, 3, 4, 7)
+    intsHashSet.add(5)//추가
+    intsHashSet.remove(6)//삭제
+    println(intsHashSet)
+}
+```
+![image](https://github.com/qlkdkd/OOP/assets/71871927/06b914ed-1572-4139-bb7a-72590be07543)
+* 해시세트는 위 실행 결과와 같이 입력 순서와 중복된 요소는 무시
+* 따로 정렬 기능은 없지만 해시값을 통해 필요한 값을 요청과 즉시 바로 찾아냄
+
+## 자바의  TreeSet 컬렉션
+* sorted

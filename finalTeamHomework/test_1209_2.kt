@@ -94,27 +94,31 @@ object EventManager
 
     // 이벤트 변경 함수
     fun ChangeEvent() {
-        println("변경할 이벤트 이름을 입력하시오:")
-        val eventNameToChange = readLine() ?: ""
+        println("변경할 이벤트 날짜을 입력하시오(yyyy/MM/dd hh:mm:ss):")
+        val eventNameString = readLine() ?: ""//변경할 이벤트 날짜 조회
+        val enFormatter=SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
+        val eventNameToChange: Date=enFormatter.parse(eventNameString)
 
         // Find the event to be changed
-        val eventToChange = eventList.find { it.title == eventNameToChange }
+        val eventToChange = eventList.find { it.sDate == eventNameToChange}
 
         if (eventToChange != null) {
             // Display the existing event details
             println("현재 이벤트 정보:")
             println("이벤트 이름: ${eventToChange.title}")
-            println("이벤트 시작 시간: ${eventToChange.date}")
+            println("이벤트 시작 시간: ${eventToChange.sDate}")
             println("이벤트 세부사항: ${eventToChange.description}")
 
             // Collect new event information
-            println("변경할 이벤트 시작 시간을 입력하시오(yyyy/MM/dd hh:mm:ss)")
+            println("변경할 이벤트 시작 시간을 입력하시오(yyyy/MM/dd hh:mm:ss): ")
             val startDateTimeString = readLine() // 변경할 이벤트 시작 시간 입력
             val startFormatter = SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
             val startDate: Date = startFormatter.parse(startDateTimeString) // 시작 시간 문자열을 Date로 변환
 
-
-
+            println("변경할 이벤트 종료 시간을 입력하시오(yyyy/MM/dd hh:mm:ss): ")
+            val endDateTimeString=readLine()
+            val endFormatter=SimpleDateFormat("yyyy/MM/dd hh:mm:ss")
+            val endDate: Date=endFormatter.parse(endDateTimeString)
             println("변경할 이벤트 이름을 입력하시오: ")
             val eventName=readLine() ?: ""
 
@@ -122,7 +126,8 @@ object EventManager
             val eventDetails = readLine() ?: ""
 
             // Update the existing event with new information
-            eventToChange.date = startDate
+            eventToChange.sDate = startDate
+            eventToChange.eDate=endDate
             eventToChange.title=eventName
             eventToChange.description = eventDetails
 
